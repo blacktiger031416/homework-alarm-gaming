@@ -34,6 +34,26 @@
 
       <footer>무료 스택 · Firebase + Netlify · GitHub 웹편집</footer>
     </div>
+    
+    <!-- Firebase SDK (compat) -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+    <script>
+      // 🔑 Firebase 웹 앱 설정
+      const firebaseConfig = {
+        apiKey: "AIzaSyAwf9Ek_3ceymoxBizs9agNSeqO9x5ItxY",
+        authDomain: "homework-alarm-free.firebaseapp.com",
+        projectId: "homework-alarm-free",
+        storageBucket: "homework-alarm-free.firebasestorage.app",
+        messagingSenderId: "334330913165",
+        appId: "1:334330913165:web:3ac4ccca51d38e6a2e1dc4",
+        measurementId: "G-RLG6M2NCLB"
+      };
+      firebase.initializeApp(firebaseConfig);
+      // 전역에서 사용할 auth/provider
+      window.auth = firebase.auth();
+      window.googleProvider = new firebase.auth.GoogleAuthProvider();
+    </script>
 
     <script src="app.js" defer></script>
   </body>
