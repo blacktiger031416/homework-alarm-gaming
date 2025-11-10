@@ -4,9 +4,37 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Homework Alarm (Free Stack)</title>
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <h1>Homework Alarm</h1>
-    <p>배포 성공! 이제 로그인/DB/알림 기능을 차례대로 붙일 거예요.</p>
+    <div class="container">
+      <div class="header">
+        <h1>Homework Alarm <span class="badge" id="userBadge" class="hidden"></span></h1>
+        <div class="toolbar">
+          <span class="level" id="levelSpan">Lv.1 (XP 0/100)</span>
+          <button id="loginBtn">Google로 로그인 (임시)</button>
+          <button id="logoutBtn" class="secondary hidden">로그아웃</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2 style="margin-top:0;">과제 추가</h2>
+        <form id="addForm" class="grid grid-2">
+          <input id="titleInput" type="text" placeholder="예: 수학 문제집 p.123 #1-10" />
+          <input id="dueInput" type="datetime-local" />
+          <button type="submit">추가</button>
+        </form>
+      </div>
+
+      <div class="card" style="margin-top:12px;">
+        <h2 style="margin-top:0;">내 과제</h2>
+        <div id="empty">과제가 없습니다. 위에서 추가해 보세요.</div>
+        <div id="taskList" class="list"></div>
+      </div>
+
+      <footer>무료 스택 · Firebase + Netlify · GitHub 웹편집</footer>
+    </div>
+
+    <script src="app.js" defer></script>
   </body>
 </html>
