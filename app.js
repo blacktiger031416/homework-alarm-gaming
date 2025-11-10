@@ -19,15 +19,32 @@ const el = {
   empty: document.querySelector('#empty'),
 };
 
-// 더미 로그인(임시): 다음 단계에서 Firebase Auth로 교체
-el.loginBtn?.addEventListener('click', () => {
-  state.user = { displayName: 'Guest', uid: 'local-demo' };
+// 🔐 구글 로그인/로그아웃 (Firebase Auth 사용)
+el.loginBtn?.addEventListener('click', async () => {
+  try {
+    await window.auth.signInWithPopup(window.googleProvider);
+    // 로그인 후 onAuthStateChanged가 자동으로 호출됨
+  } catch (err) {
+    alert('로그인 실패: ' + err.message);
+  }
+});
+
+el.logoutBtn?.addEventListener('click', async () => {
+  try {
+    await window.auth.signOut();
+  } catch (err) {
+    alert('로그아웃 실패: ' + err.message);
+  }
+});
+
+// 로그인 상태 변경 감시
+window.auth.onAuthStateChanged((user) => {
+  state.user = user
+    ? { displayName: user.displayName || 'User', uid: user.uid, email: user.email || '' }
+    : null;
   render();
 });
-el.logoutBtn?.addEventListener('click', () => {
-  state.user = null;
-  render();
-});
+
 
 // 과제 추가(임시 로컬 저장)
 el.addForm?.addEventListener('submit', (e) => {
